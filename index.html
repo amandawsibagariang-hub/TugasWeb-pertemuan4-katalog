@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Katalog produk fashion responsif menggunakan Bootstrap">
+
+    <title>KatalogKu - Katalog Produk Responsif</title>
+
+    <!-- =====================================================
+         BOOTSTRAP 5
+         ===================================================== -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+         CSS INTERNAL
+         Semua CSS dimasukkan langsung ke file HTML
+         ===================================================== -->
+
+    <style>
+
+        /* =====================================================
+           VARIABLE WARNA
+           ===================================================== */
+
+        :root {
+            --primary: #c4457a;
+            --primary-dark: #922d59;
+            --dark: #172033;
+            --text: #596273;
+            --light: #f8f9fc;
+            --white: #ffffff;
+            --border: #e8eaf0;
+        }
+
+
+        /* =====================================================
+           GLOBAL
+           ===================================================== */
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: var(--dark);
+
+            background-color: var(--white);
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+           ===================================================== */
+
+        .navbar {
+            background-color: rgba(23, 32, 51, 0.97);
+
+            box-shadow:
+                0 4px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar-brand {
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link {
+            margin-left: 8px;
+            transition: 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #ff8fbb !important;
+        }
+
+
+        /* =====================================================
+           HERO
+           ===================================================== */
+
+        .hero-section {
+            min-height: 100vh;
+
+            padding:
+                110px 0 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(196, 69, 122, 0.15),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f8f9fc,
+                    #ffffff
+                );
+        }
+
+
+        /* Badge */
+
+        .hero-badge {
+            color: var(--primary);
+
+            background:
+                rgba(196, 69, 122, 0.1);
+
+            padding:
+                9px 14px;
+
+            border-radius: 50px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        /* Judul Hero
+           Menggunakan clamp()
+           sesuai persyaratan tugas */
+
+        .hero-title {
+            font-size:
+                clamp(
+                    2.2rem,
+                    6vw,
+                    4.8rem
+                );
+
+            line-height: 1.05;
+
+            font-weight: 800;
+
+            margin:
+                18px 0;
+        }
+
+
+        /* Deskripsi */
+
+        .hero-text {
+            color: var(--text);
+
+            font-size:
+                clamp(
+                    1rem,
+                    2vw,
+                    1.2rem
+                );
+
+            max-width: 650px;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* Tombol utama */
+
+        .btn-main {
+            background-color:
+                var(--primary);
+
+            color:
+                var(--white);
+
+            border: none;
+
+            padding:
+                12px 24px;
+
+            border-radius:
+                10px;
+
+            font-weight:
+                700;
+
+            transition:
+                0.25s ease;
+        }
+
+        .btn-main:hover {
+            background-color:
+                var(--primary-dark);
+
+            color:
+                var(--white);
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* Gambar Hero */
+
+        .hero-image {
+            width: 100%;
+
+            max-height: 560px;
+
+            object-fit: cover;
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(23, 32, 51, 0.16);
+        }
+
+
+        /* =====================================================
+           JUDUL SECTION
+           ===================================================== */
+
+        .section-heading {
+            margin-bottom: 40px;
+        }
+
+        .section-heading h2,
+        .about-section h2,
+        .contact-section h2 {
+
+            font-size:
+                clamp(
+                    1.8rem,
+                    4vw,
+                    3rem
+                );
+
+            font-weight:
+                800;
+
+            margin:
+                10px 0;
+        }
+
+        .section-heading p,
+        .contact-section p {
+            color:
+                var(--text);
+        }
+
+        .section-label {
+            color:
+                var(--primary);
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                1.5px;
+        }
+
+
+        /* =====================================================
+           PRODUK
+           ===================================================== */
+
+        .product-section {
+            padding:
+                80px 0;
+
+            background:
+                var(--light);
+        }
+
+
+        /* Card Produk */
+
+        .product-card {
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                18px;
+
+            overflow:
+                hidden;
+
+            background:
+                var(--white);
+
+            box-shadow:
+                0 8px 25px
+                rgba(23, 32, 51, 0.06);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        /* Efek hover */
+
+        .product-card:hover {
+
+            transform:
+                translateY(-7px);
+
+            box-shadow:
+                0 18px 35px
+                rgba(23, 32, 51, 0.12);
+        }
+
+
+        /* Gambar Produk
+           Responsive image */
+
+        .product-card .card-img-top {
+
+            width: 100%;
+
+            height: 250px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        /* Isi Card */
+
+        .product-card .card-body {
+            padding:
+                22px;
+        }
+
+
+        /* Kategori Produk */
+
+        .product-category {
+
+            color:
+                var(--primary);
+
+            font-size:
+                0.82rem;
+
+            font-weight:
+                700;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                1px;
+        }
+
+
+        /* Nama Produk */
+
+        .product-title {
+
+            font-size:
+                clamp(
+                    1.15rem,
+                    2vw,
+                    1.4rem
+                );
+
+            font-weight:
+                800;
+
+            margin:
+                8px 0;
+        }
+
+
+        /* Deskripsi */
+
+        .product-description {
+
+            color:
+                var(--text);
+
+            font-size:
+                0.95rem;
+        }
+
+
+        /* Harga */
+
+        .price {
+
+            color:
+                var(--primary-dark);
+
+            font-size:
+                1.2rem;
+
+            font-weight:
+                800;
+
+            margin-bottom:
+                12px;
+        }
+
+
+        /* Tombol Produk */
+
+        .btn-product {
+
+            border:
+                1px solid var(--primary);
+
+            color:
+                var(--primary);
+
+            border-radius:
+                9px;
+
+            font-weight:
+                700;
+        }
+
+        .btn-product:hover {
+
+            background:
+                var(--primary);
+
+            color:
+                var(--white);
+        }
+
+
+        /* =====================================================
+           TENTANG
+           ===================================================== */
+
+        .about-section {
+
+            padding:
+                90px 0;
+
+            background:
+                var(--white);
+        }
+
+        .about-section p {
+            color:
+                var(--text);
+        }
+
+
+        /* =====================================================
+           KONTAK
+           ===================================================== */
+
+        .contact-section {
+
+            padding:
+                90px 0;
+
+            background:
+                #fff2f7;
+        }
+
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        .footer {
+
+            padding:
+                30px 0;
+
+            background:
+                var(--dark);
+
+            color:
+                rgba(255, 255, 255, 0.9);
+        }
+
+        .footer small {
+
+            color:
+                rgba(255, 255, 255, 0.6);
+        }
+
+
+        /* =====================================================
+           BREAKPOINT 1
+           TABLET
+           768px ke atas
+           ===================================================== */
+
+        @media (min-width: 768px) {
+
+            .product-card .card-img-top {
+
+                height:
+                    270px;
+            }
+
+            .product-card .card-body {
+
+                padding:
+                    24px;
+            }
+        }
+
+
+        /* =====================================================
+           BREAKPOINT 2
+           DESKTOP
+           992px ke atas
+           ===================================================== */
+
+        @media (min-width: 992px) {
+
+            .hero-section {
+
+                padding-top:
+                    120px;
+            }
+
+            .product-section {
+
+                padding:
+                    100px 0;
+            }
+        }
+
+
+        /* =====================================================
+           BREAKPOINT 3
+           LARGE DESKTOP
+           1200px ke atas
+           ===================================================== */
+
+        @media (min-width: 1200px) {
+
+            .product-card .card-img-top {
+
+                height:
+                    240px;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+           Di bawah 768px
+           ===================================================== */
+
+        @media (max-width: 767.98px) {
+
+            .hero-section {
+
+                min-height:
+                    auto;
+
+                padding:
+                    105px 0 55px;
+            }
+
+            .hero-title {
+
+                font-size:
+                    clamp(
+                        2rem,
+                        11vw,
+                        3.2rem
+                    );
+            }
+
+            .hero-image {
+
+                max-height:
+                    400px;
+            }
+
+            .product-section,
+            .about-section,
+            .contact-section {
+
+                padding:
+                    65px 0;
+            }
+
+            .product-card .card-img-top {
+
+                height:
+                    230px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR RESPONSIF
+         ===================================================== -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+
+        <div class="container">
+
+            <!-- Nama website -->
+
+            <a
+                class="navbar-brand fw-bold"
+                href="#beranda">
+
+                KatalogKu
+
+            </a>
+
+
+            <!-- Hamburger Mobile -->
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarMenu"
+                aria-controls="navbarMenu"
+                aria-expanded="false"
+                aria-label="Buka menu navigasi">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <!-- Menu -->
+
+            <div
+                class="collapse navbar-collapse"
+                id="navbarMenu">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="#beranda">
+
+                            Beranda
+
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="#produk">
+
+                            Produk
+
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="#tentang">
+
+                            Tentang
+
+                        </a>
+
+                    </li>
+
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link"
+                            href="#kontak">
+
+                            Kontak
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <header
+        id="beranda"
+        class="hero-section">
+
+        <div class="container">
+
+            <div
+                class="row align-items-center g-4">
+
+
+                <!-- Teks Hero -->
+
+                <div
+                    class="col-12 col-lg-7">
+
+                    <span
+                        class="badge hero-badge mb-3">
+
+                        KATALOG PRODUK RESPONSIF
+
+                    </span>
+
+
+                    <h1 class="hero-title">
+
+                        Temukan Produk Fashion Favoritmu
+
+                    </h1>
+
+
+                    <p class="hero-text">
+
+                        Koleksi fashion pilihan dengan desain
+                        simpel, nyaman, dan cocok digunakan
+                        untuk berbagai aktivitas sehari-hari.
+
+                    </p>
+
+
+                    <a
+                        href="#produk"
+                        class="btn btn-main">
+
+                        Lihat Produk
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- Gambar Hero -->
+
+                <div
+                    class="col-12 col-lg-5">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=900&q=80"
+                        class="img-fluid hero-image"
+                        alt="Koleksi pakaian fashion">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             PRODUK
+             ================================================= -->
+
+        <section
+            id="produk"
+            class="product-section">
+
+            <div class="container">
+
+
+                <!-- Judul -->
+
+                <div
+                    class="section-heading text-center">
+
+                    <span class="section-label">
+
+                        KOLEKSI
+
+                    </span>
+
+
+                    <h2>
+
+                        Produk Pilihan
+
+                    </h2>
+
+
+                    <p>
+
+                        Pilih produk yang sesuai dengan
+                        gaya dan kebutuhanmu.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     GRID PRODUK RESPONSIF
+                     ================================================= -->
+
+                <div class="row g-4">
+
+
+                    <!-- =========================
+                         PRODUK 1
+                         ========================= -->
+
+                    <div
+                        class="col-12 col-md-6 col-xl-3">
+
+                        <article
+                            class="card product-card h-100">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80"
+                                class="card-img-top"
+                                alt="Oversized T-Shirt"
+                                loading="lazy">
+
+
+                            <div
+                                class="card-body d-flex flex-column">
+
+                                <span
+                                    class="product-category">
+
+                                    T-Shirt
+
+                                </span>
+
+
+                                <h3
+                                    class="product-title">
+
+                                    Oversized T-Shirt
+
+                                </h3>
+
+
+                                <p
+                                    class="product-description">
+
+                                    Kaos oversized dengan bahan
+                                    nyaman untuk aktivitas santai.
+
+                                </p>
+
+
+                                <div class="mt-auto">
+
+                                    <p class="price">
+
+                                        Rp129.000
+
+                                    </p>
+
+
+                                    <a
+                                        href="#kontak"
+                                        class="btn btn-product w-100">
+
+                                        Beli Sekarang
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PRODUK 2
+                         ========================= -->
+
+                    <div
+                        class="col-12 col-md-6 col-xl-3">
+
+                        <article
+                            class="card product-card h-100">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=80"
+                                class="card-img-top"
+                                alt="Hoodie Casual"
+                                loading="lazy">
+
+
+                            <div
+                                class="card-body d-flex flex-column">
+
+                                <span
+                                    class="product-category">
+
+                                    Hoodie
+
+                                </span>
+
+
+                                <h3
+                                    class="product-title">
+
+                                    Hoodie Casual
+
+                                </h3>
+
+
+                                <p
+                                    class="product-description">
+
+                                    Hoodie hangat dengan model
+                                    sederhana dan mudah dipadukan.
+
+                                </p>
+
+
+                                <div class="mt-auto">
+
+                                    <p class="price">
+
+                                        Rp249.000
+
+                                    </p>
+
+
+                                    <a
+                                        href="#kontak"
+                                        class="btn btn-product w-100">
+
+                                        Beli Sekarang
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PRODUK 3
+                         ========================= -->
+
+                    <div
+                        class="col-12 col-md-6 col-xl-3">
+
+                        <article
+                            class="card product-card h-100">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=80"
+                                class="card-img-top"
+                                alt="Jeans Wide Leg"
+                                loading="lazy">
+
+
+                            <div
+                                class="card-body d-flex flex-column">
+
+                                <span
+                                    class="product-category">
+
+                                    Celana
+
+                                </span>
+
+
+                                <h3
+                                    class="product-title">
+
+                                    Jeans Wide Leg
+
+                                </h3>
+
+
+                                <p
+                                    class="product-description">
+
+                                    Celana jeans dengan potongan
+                                    wide leg yang nyaman dan stylish.
+
+                                </p>
+
+
+                                <div class="mt-auto">
+
+                                    <p class="price">
+
+                                        Rp199.000
+
+                                    </p>
+
+
+                                    <a
+                                        href="#kontak"
+                                        class="btn btn-product w-100">
+
+                                        Beli Sekarang
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PRODUK 4
+                         ========================= -->
+
+                    <div
+                        class="col-12 col-md-6 col-xl-3">
+
+                        <article
+                            class="card product-card h-100">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=700&q=80"
+                                class="card-img-top"
+                                alt="Cardigan Knit"
+                                loading="lazy">
+
+
+                            <div
+                                class="card-body d-flex flex-column">
+
+                                <span
+                                    class="product-category">
+
+                                    Cardigan
+
+                                </span>
+
+
+                                <h3
+                                    class="product-title">
+
+                                    Cardigan Knit
+
+                                </h3>
+
+
+                                <p
+                                    class="product-description">
+
+                                    Cardigan lembut yang cocok
+                                    digunakan untuk suasana santai.
+
+                                </p>
+
+
+                                <div class="mt-auto">
+
+                                    <p class="price">
+
+                                        Rp179.000
+
+                                    </p>
+
+
+                                    <a
+                                        href="#kontak"
+                                        class="btn btn-product w-100">
+
+                                        Beli Sekarang
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PRODUK 5
+                         ========================= -->
+
+                    <div
+                        class="col-12 col-md-6 col-xl-3">
+
+                        <article
+                            class="card product-card h-100">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80"
+                                class="card-img-top"
+                                alt="Sneakers Casual"
+                                loading="lazy">
+
+
+                            <div
+                                class="card-body d-flex flex-column">
+
+                                <span
+                                    class="product-category">
+
+                                    Sepatu
+
+                                </span>
+
+
+                                <h3
+                                    class="product-title">
+
+                                    Sneakers Casual
+
+                                </h3>
+
+
+                                <p
+                                    class="product-description">
+
+                                    Sneakers ringan untuk menemani
+                                    kegiatan sehari-hari.
+
+                                </p>
+
+
+                                <div class="mt-auto">
+
+                                    <p class="price">
+
+                                        Rp329.000
+
+                                    </p>
+
+
+                                    <a
+                                        href="#kontak"
+                                        class="btn btn-product w-100">
+
+                                        Beli Sekarang
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PRODUK 6
+                         ========================= -->
+
+                    <div
+                        class="col-12 col-md-6 col-xl-3">
+
+                        <article
+                            class="card product-card h-100">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80"
+                                class="card-img-top"
+                                alt="Tote Bag"
+                                loading="lazy">
+
+
+                            <div
+                                class="card-body d-flex flex-column">
+
+                                <span
+                                    class="product-category">
+
+                                    Tas
+
+                                </span>
+
+
+                                <h3
+                                    class="product-title">
+
+                                    Tote Bag
+
+                                </h3>
+
+
+                                <p
+                                    class="product-description">
+
+                                    Tote bag simpel dengan ruang
+                                    yang cukup untuk kebutuhan harian.
+
+                                </p>
+
+
+                                <div class="mt-auto">
+
+                                    <p class="price">
+
+                                        Rp99.000
+
+                                    </p>
+
+
+                                    <a
+                                        href="#kontak"
+                                        class="btn btn-product w-100">
+
+                                        Beli Sekarang
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PRODUK 7
+                         ========================= -->
+
+                    <div
+                        class="col-12 col-md-6 col-xl-3">
+
+                        <article
+                            class="card product-card h-100">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=700&q=80"
+                                class="card-img-top"
+                                alt="Dress Casual"
+                                loading="lazy">
+
+
+                            <div
+                                class="card-body d-flex flex-column">
+
+                                <span
+                                    class="product-category">
+
+                                    Dress
+
+                                </span>
+
+
+                                <h3
+                                    class="product-title">
+
+                                    Dress Casual
+
+                                </h3>
+
+
+                                <p
+                                    class="product-description">
+
+                                    Dress dengan tampilan sederhana
+                                    untuk berbagai kesempatan.
+
+                                </p>
+
+
+                                <div class="mt-auto">
+
+                                    <p class="price">
+
+                                        Rp219.000
+
+                                    </p>
+
+
+                                    <a
+                                        href="#kontak"
+                                        class="btn btn-product w-100">
+
+                                        Beli Sekarang
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PRODUK 8
+                         ========================= -->
+
+                    <div
+                        class="col-12 col-md-6 col-xl-3">
+
+                        <article
+                            class="card product-card h-100">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1603252110481-7ba873bf42ab?auto=format&fit=crop&w=700&q=80"
+                                class="card-img-top"
+                                alt="Kemeja Linen"
+                                loading="lazy">
+
+
+                            <div
+                                class="card-body d-flex flex-column">
+
+                                <span
+                                    class="product-category">
+
+                                    Kemeja
+
+                                </span>
+
+
+                                <h3
+                                    class="product-title">
+
+                                    Kemeja Linen
+
+                                </h3>
+
+
+                                <p
+                                    class="product-description">
+
+                                    Kemeja berbahan ringan dengan
+                                    tampilan clean dan nyaman.
+
+                                </p>
+
+
+                                <div class="mt-auto">
+
+                                    <p class="price">
+
+                                        Rp189.000
+
+                                    </p>
+
+
+                                    <a
+                                        href="#kontak"
+                                        class="btn btn-product w-100">
+
+                                        Beli Sekarang
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             TENTANG
+             ===================================================== -->
+
+        <section
+            id="tentang"
+            class="about-section">
+
+            <div class="container">
+
+                <div
+                    class="row align-items-center g-4">
+
+
+                    <div
+                        class="col-12 col-lg-6">
+
+                        <span class="section-label">
+
+                            TENTANG KATALOG
+
+                        </span>
+
+
+                        <h2>
+
+                            Koleksi sederhana untuk
+                            gaya sehari-hari.
+
+                        </h2>
+
+                    </div>
+
+
+                    <div
+                        class="col-12 col-lg-6">
+
+                        <p>
+
+                            KatalogKu merupakan contoh halaman
+                            katalog produk responsif yang dibuat
+                            menggunakan Bootstrap 5.
+
+                        </p>
+
+
+                        <p class="mb-0">
+
+                            Halaman ini menggunakan pendekatan
+                            mobile-first agar tetap nyaman
+                            digunakan pada berbagai ukuran layar.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             KONTAK
+             ===================================================== -->
+
+        <section
+            id="kontak"
+            class="contact-section">
+
+            <div
+                class="container text-center">
+
+                <span class="section-label">
+
+                    KONTAK
+
+                </span>
+
+
+                <h2>
+
+                    Tertarik dengan produk kami?
+
+                </h2>
+
+
+                <p>
+
+                    Hubungi kami untuk mendapatkan
+                    informasi lebih lanjut.
+
+                </p>
+
+
+                <a
+                    href="mailto:katalogku@example.com"
+                    class="btn btn-main">
+
+                    Hubungi Kami
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="footer">
+
+        <div class="container text-center">
+
+            <p class="mb-1">
+
+                &copy; 2026 KatalogKu.
+                Tugas Web Pertemuan 3.
+
+            </p>
+
+
+            <small>
+
+                Dibuat menggunakan HTML, CSS,
+                dan Bootstrap 5.
+
+            </small>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         BOOTSTRAP JAVASCRIPT
+         Dibutuhkan agar hamburger navbar berfungsi
+         ===================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+
+</html>
